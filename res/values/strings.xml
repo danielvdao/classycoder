@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ClassyCoder</string>
+    <string name="hello_world">Please enter your number:</string>
+    <string name="action_settings">Settings</string>
+    <string name="subscribe">Dear god, please subscribe me</string>
+    <string name="text_friend">Spam my friend!</string>
+
+</resources>
