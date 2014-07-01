@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.os.Build;
+import android.telephony.*;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -29,9 +30,9 @@ public class MainActivity extends ActionBarActivity {
 	public void subscription(View view){
 		EditText editSubscription = (EditText) findViewById(R.id.editSubscription);
 		String num = editSubscription.getText().toString();
-		
+		num = PhoneNumberUtils.formatNumber(num);
 		/* If number not length 11, 1(123)456-7890, then error */
-		if(num.length() != 11){
+		if(checkNum(num) == false || num.length() != 11){
 			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
 		}
 		
@@ -40,12 +41,18 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 	
+	private boolean checkNum(String num) {
+		// TODO Auto-generated method stub
+		return PhoneNumberUtils.isGlobalPhoneNumber(num);
+	}
+
 	public void spamFriend(View view){
 		EditText editSpamFriend = (EditText) findViewById(R.id.editSpamFriend);
 		String num = editSpamFriend.getText().toString();
-		
+		num = PhoneNumberUtils.formatNumber(num);
+
 		/* If number no length 11, then throw a message */
-		if(num.length() != 11){
+		if(checkNum(num) == false || num.length() != 11){
 			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
 		}
 		
