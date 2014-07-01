@@ -27,35 +27,27 @@ public class MainActivity extends ActionBarActivity {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void subscription(View view){
 		EditText editSubscription = (EditText) findViewById(R.id.editSubscription);
 		String num = editSubscription.getText().toString();
-		num = PhoneNumberUtils.formatNumber(num);
 		/* If number not length 11, 1(123)456-7890, then error */
-		if(num.length() != 11){
+		if(!PhoneNumberUtils.isGlobalPhoneNumber(num)){
 			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
 		}
 		
 		else{
-			android.telephony.SmsManager messenger = android.telephony.SmsManager.getDefault();
-			messenger.sendTextMessage(num, null, "hello!", null, null);
+			SmsManager sms = android.telephony.SmsManager.getDefault();
+			sms.sendTextMessage(num, null, "hello!", null, null);
 			Toast.makeText(getApplicationContext(), "Thanks! You have subscribed :)", Toast.LENGTH_SHORT).show();
 		}
-	}
-	
-	private boolean checkNum(String num) {
-		// TODO Auto-generated method stub
-		return PhoneNumberUtils.isGlobalPhoneNumber(num);
 	}
 
 	public void spamFriend(View view){
 		EditText editSpamFriend = (EditText) findViewById(R.id.editSpamFriend);
 		String num = editSpamFriend.getText().toString();
-		num = PhoneNumberUtils.formatNumber(num);
 		
 		/* If number no length 11, then throw a message */
-		if(checkNum(num) == false || num.length() != 12){
+		if(!PhoneNumberUtils.isGlobalPhoneNumber(num)){
 			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
 		}
 		

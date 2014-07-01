@@ -38,7 +38,6 @@
         android:layout_marginBottom="38dp"
         android:ems="10"
         android:inputType="phone"
-        android:onClick="subscription"
         android:hint="Enter your number" >
 
     </EditText>
@@ -52,7 +51,6 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="phone"
-        android:onClick="spamFriend"
         android:hint="Enter friend's number" />
 
     <TextView
