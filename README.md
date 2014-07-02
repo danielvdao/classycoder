@@ -5,6 +5,6 @@ My first android app (hopefully). It will send out texts at certain times, depen
 
 **_todo_**
 
-- Get the SMS class actually functioning
+- ~~Get the SMS class actually functioning~~ Done. 
 - Read the text from the assets file and get it to display 
 - ~~Make the project~~ Done.
