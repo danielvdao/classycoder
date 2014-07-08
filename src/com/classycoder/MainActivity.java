@@ -1,8 +1,14 @@
 package com.classycoder;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,18 +34,23 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void subscription(View view){
-		EditText editSubscription = (EditText) findViewById(R.id.editSubscription);
-		String num = editSubscription.getText().toString();
-		/* If number not length 11, 1(123)456-7890, then error */
-		if(!PhoneNumberUtils.isGlobalPhoneNumber(num)){
-			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
-		}
+		/* Create a new calendar instance */
+		Calendar midnightCalendar = Calendar.getInstance();
+//		midnightCalendar.setTimeZone(TimeZone.getTimeZone("CT"));
+		midnightCalendar.set(Calendar.HOUR_OF_DAY, 22);
+		midnightCalendar.set(Calendar.MINUTE, 37);
+		midnightCalendar.set(Calendar.SECOND, 0);
 		
-		else{
-			SmsManager sms = android.telephony.SmsManager.getDefault();
-			sms.sendTextMessage(num, null, "hello!", null, null);
-			Toast.makeText(getApplicationContext(), "Thanks! You have subscribed :)", Toast.LENGTH_SHORT).show();
-		}
+		AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+		
+		/*Class which sends the SMS and receives the alarm*/
+		Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
+		/* Creates a pending intent to be called at midnight */
+		PendingIntent tester = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
+		alarm.cancel(tester);
+		alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, midnightCalendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, tester);
+		Toast.makeText(getApplicationContext(), "You have sent a message to your friend!", Toast.LENGTH_SHORT).show();
+
 	}
 
 	public void spamFriend(View view){
@@ -96,3 +107,15 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 }
+//EditText editSubscription = (EditText) findViewById(R.id.editSubscription);
+//String num = editSubscription.getText().toString();
+///* If number not length 11, 1(123)456-7890, then error */
+//if(!PhoneNumberUtils.isGlobalPhoneNumber(num)){
+//	Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
+//}
+//
+//else{
+//	SmsManager sms = android.telephony.SmsManager.getDefault();
+//	sms.sendTextMessage(num, null, "hello!", null, null);
+//	Toast.makeText(getApplicationContext(), "Thanks! You have subscribed :)", Toast.LENGTH_SHORT).show();
+//}
