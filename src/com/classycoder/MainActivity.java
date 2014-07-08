@@ -1,10 +1,13 @@
 package com.classycoder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.TimeZone;
+import java.util.Random;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -17,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.Build;
 import android.telephony.*;
 
 public class MainActivity extends ActionBarActivity {
@@ -35,22 +37,23 @@ public class MainActivity extends ActionBarActivity {
 
 	public void subscription(View view){
 		/* Create a new calendar instance */
-		Calendar midnightCalendar = Calendar.getInstance();
-//		midnightCalendar.setTimeZone(TimeZone.getTimeZone("CT"));
-		midnightCalendar.set(Calendar.HOUR_OF_DAY, 22);
-		midnightCalendar.set(Calendar.MINUTE, 37);
-		midnightCalendar.set(Calendar.SECOND, 0);
+		Calendar dailyCalendar = Calendar.getInstance();
+		dailyCalendar.set(Calendar.HOUR_OF_DAY, 10);
+		dailyCalendar.set(Calendar.MINUTE, 0);
+		dailyCalendar.set(Calendar.SECOND, 0);
 		
+		/* AlarmManager to call the alarms */
 		AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 		
 		/*Class which sends the SMS and receives the alarm*/
 		Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
-		/* Creates a pending intent to be called at midnight */
-		PendingIntent tester = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
-		alarm.cancel(tester);
-		alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, midnightCalendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, tester);
-		Toast.makeText(getApplicationContext(), "You have sent a message to your friend!", Toast.LENGTH_SHORT).show();
-
+		
+		/* Creates a pending intent to be called at 10am */
+		PendingIntent pi = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
+		
+		/* For the daily reminder */
+		alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
+		Toast.makeText(getApplicationContext(), "You have subscribed to The Classy Coder!", Toast.LENGTH_SHORT).show();
 	}
 
 	public void spamFriend(View view){
@@ -63,15 +66,61 @@ public class MainActivity extends ActionBarActivity {
 		}
 		
 		else{
-			SmsManager messenger = android.telephony.SmsManager.getDefault();
-			messenger.sendTextMessage(num, null, "hello!", null, null);
-			Toast.makeText(getApplicationContext(), "You have sent a message to your friend!", Toast.LENGTH_SHORT).show();
+			sendSmsToFriend(num);
 		}
+	}
+	
+	/* Method to send SMS to friend once */
+	private void sendSmsToFriend(String num){
+		/* Get the body of the text message */ 
+		String text = getTextBody(timeOfDay());
+		
+		/* Send the text */
+		SmsManager messenger = android.telephony.SmsManager.getDefault();
+		messenger.sendTextMessage(num, null, text, null, null);
+		Toast.makeText(getApplicationContext(), "You have sent a message to your friend!", Toast.LENGTH_SHORT).show();
+	}
+	
+	/* Method to return the text message that needs to be sent */
+	private String getTextBody(int time_of_day){
+		ArrayList<String> all_txt = new ArrayList<String>();
+		try{
+			BufferedReader br;
+			
+			/* Morning messages */
+			if(time_of_day == 0){
+				br = new BufferedReader(new InputStreamReader(getAssets().open("lovelypuns.txt")));
+			}
+			
+			/* Afternoon messages */
+			else{
+				br = new BufferedReader(new InputStreamReader(getAssets().open("lovelypuns.txt")));
+			}
+			
+			String line; 
+			while ((line = br.readLine()) != null){
+				all_txt.add(line);
+			}
+		}
+		/* Error message handling */
+		catch (IOException e){
+			Toast.makeText(getApplicationContext(), "Text body cannot be sent.", Toast.LENGTH_SHORT).show();
+		}
+		
+		int len = all_txt.size();
+		Random rand = new Random();
+		
+		/* Pick a random message from the file */
+		return all_txt.get(rand.nextInt(len));
+	}
+	
+	/* Method to return time of day */
+	private static int timeOfDay(){		
+		return Calendar.AM_PM;
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
