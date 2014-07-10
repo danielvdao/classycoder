@@ -24,6 +24,11 @@ import android.telephony.*;
 
 public class MainActivity extends ActionBarActivity {
 
+	public static final String PHONE_NUMBER = "com.classycoder";
+	public static final String TEXT_BODY = "com.classycoder";
+
+;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,18 +47,36 @@ public class MainActivity extends ActionBarActivity {
 		dailyCalendar.set(Calendar.MINUTE, 0);
 		dailyCalendar.set(Calendar.SECOND, 0);
 		
-		/* AlarmManager to call the alarms */
-		AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+		/* EditText object */
+		EditText subscribeText = (EditText) findViewById(R.id.editSubscription);
 		
-		/*Class which sends the SMS and receives the alarm*/
-		Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
+		String num = subscribeText.getText().toString();
 		
-		/* Creates a pending intent to be called at 10am */
-		PendingIntent pi = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
+		/* If it's not a valid number, then throw an error message */
+		if(!isValidNum(num)){
+			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
+		}
 		
-		/* For the daily reminder */
-		alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
-		Toast.makeText(getApplicationContext(), "You have subscribed to The Classy Coder!", Toast.LENGTH_SHORT).show();
+		else{
+			/* AlarmManager to call the alarms */
+			AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+			
+			/*Class which sends the SMS and receives the alarm*/
+			Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
+			smsSender.putExtra(PHONE_NUMBER, num);
+			smsSender.putExtra(TEXT_BODY, getTextBody(timeOfDay()));
+			/* Creates a pending intent to be called at 10am */
+			PendingIntent pi = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
+			
+			/* For the daily reminder */
+			alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
+			Toast.makeText(getApplicationContext(), "You have subscribed to The Classy Coder!", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	/* Checks if the number is valid */
+	private boolean isValidNum(String num) {
+		return PhoneNumberUtils.isGlobalPhoneNumber(num);
 	}
 
 	public void spamFriend(View view){
@@ -66,12 +89,12 @@ public class MainActivity extends ActionBarActivity {
 		}
 		
 		else{
-			sendSmsToFriend(num);
+			sendSms(num);
 		}
 	}
 	
 	/* Method to send SMS to friend once */
-	private void sendSmsToFriend(String num){
+	private void sendSms(String num){
 		/* Get the body of the text message */ 
 		String text = getTextBody(timeOfDay());
 		

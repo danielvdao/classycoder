@@ -9,7 +9,7 @@
     tools:context="com.classycoder.MainActivity$PlaceholderFragment" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -19,12 +19,12 @@
         android:onClick="subscription" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/spamFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/button1"
+        android:layout_alignLeft="@+id/subscribe"
+        android:layout_alignRight="@+id/subscribe"
+        android:layout_below="@+id/subscribe"
         android:layout_marginTop="70dp"
         android:text="@string/text_friend"
         android:onClick="spamFriend" />
@@ -33,7 +33,7 @@
         android:id="@+id/editSubscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+id/subscribe"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="38dp"
         android:ems="10"
@@ -46,7 +46,7 @@
         android:id="@+id/editSpamFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/subscribe"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:ems="10"
@@ -57,8 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editSubscription"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignRight="@+id/button1"
+        android:layout_alignLeft="@+id/subscribe"
+        android:layout_alignRight="@+id/subscribe"
         android:layout_marginBottom="30dp"
         android:text="@string/hello_world" />
 
