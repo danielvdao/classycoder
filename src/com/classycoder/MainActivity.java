@@ -43,9 +43,9 @@ public class MainActivity extends ActionBarActivity {
 	public void subscription(View view){
 		/* Create a new calendar instance */
 		Calendar dailyCalendar = Calendar.getInstance();
-		dailyCalendar.set(Calendar.HOUR_OF_DAY, 10);
-		dailyCalendar.set(Calendar.MINUTE, 0);
-		dailyCalendar.set(Calendar.SECOND, 0);
+//		dailyCalendar.set(Calendar.HOUR_OF_DAY, 10);
+//		dailyCalendar.set(Calendar.MINUTE, 0);
+//		dailyCalendar.set(Calendar.SECOND, 0);
 		
 		/* EditText object */
 		EditText subscribeText = (EditText) findViewById(R.id.editSubscription);
@@ -63,13 +63,13 @@ public class MainActivity extends ActionBarActivity {
 			
 			/*Class which sends the SMS and receives the alarm*/
 			Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
-			smsSender.putExtra(PHONE_NUMBER, num);
-			smsSender.putExtra(TEXT_BODY, getTextBody(timeOfDay()));
-			/* Creates a pending intent to be called at 10am */
+			smsSender.putExtra("phoneNum", num);
+			smsSender.putExtra("textBody", getTextBody(timeOfDay()));
+			/* Creates a pending intent to be called at current time */
 			PendingIntent pi = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
 			
 			/* For the daily reminder */
-			alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
+			alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pi);
 			Toast.makeText(getApplicationContext(), "You have subscribed to The Classy Coder!", Toast.LENGTH_SHORT).show();
 		}
 	}
