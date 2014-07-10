@@ -89,12 +89,12 @@ public class MainActivity extends ActionBarActivity {
 			
 			/* Morning messages */
 			if(time_of_day == 0){
-				br = new BufferedReader(new InputStreamReader(getAssets().open("lovelypuns.txt")));
+				br = new BufferedReader(new InputStreamReader(getAssets().open("mornings.txt")));
 			}
 			
 			/* Afternoon messages */
 			else{
-				br = new BufferedReader(new InputStreamReader(getAssets().open("lovelypuns.txt")));
+				br = new BufferedReader(new InputStreamReader(getAssets().open("afternoons.txt")));
 			}
 			
 			String line; 
