@@ -4,8 +4,8 @@
     <string name="app_name">ClassyCoder</string>
     <string name="hello_world">Please enter your number:</string>
     <string name="action_settings">Settings</string>
-    <string name="subscribe">Dear god, please subscribe me</string>
-    <string name="text_friend">Spam my friend!</string>
-    <string name="cancel">Please cancel my subscription :(</string>
+    <string name="subscribe">Subscribe!</string>
+    <string name="text_friend">Spam a friend!</string>
+    <string name="cancel">Unsunscribe</string>
 
 </resources>

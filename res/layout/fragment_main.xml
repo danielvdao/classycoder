@@ -2,6 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/htmlpick"
+    android:gravity="bottom"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -9,45 +12,43 @@
     tools:context="com.classycoder.MainActivity$PlaceholderFragment" >
 
     <Button
-        android:id="@+id/spamFriend"
+        android:id="@+id/cancel_subscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/subscribe"
-        android:layout_alignRight="@+id/subscribe"
-        android:layout_below="@+id/subscribe"
-        android:layout_marginTop="70dp"
-        android:text="@string/text_friend"
-        android:onClick="spamFriend" />
-
-    <EditText
-        android:id="@+id/editSpamFriend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/subscribe"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:hint="Enter friend's number" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="cancelSubscription"
+        android:text="@string/cancel"
+        android:background="@android:color/white" />
 
     <Button
         android:id="@+id/subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
+        android:layout_alignBaseline="@+id/cancel_subscription"
+        android:layout_alignBottom="@+id/cancel_subscription"
+        android:layout_alignLeft="@+id/editSpamFriend"
         android:onClick="subscription"
         android:text="@string/subscribe" />
 
     <Button
-        android:id="@+id/cancel_subscription"
+        android:id="@+id/spamFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spamFriend"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:onClick="cancelSubscription"
-        android:text="@string/cancel" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="spamFriend"
+        android:text="@string/text_friend" />
+
+    <EditText
+        android:id="@+id/editSpamFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/spamFriend"
+        android:layout_alignBottom="@+id/spamFriend"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/spamFriend"
+        android:ems="10"
+        android:inputType="phone" />
 
 </RelativeLayout>
