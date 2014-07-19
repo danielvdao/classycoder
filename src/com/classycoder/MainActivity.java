@@ -43,14 +43,15 @@ public class MainActivity extends ActionBarActivity {
 	public void subscription(View view){
 		/* Create a new calendar instance */
 		Calendar dailyCalendar = Calendar.getInstance();
-//		dailyCalendar.set(Calendar.HOUR_OF_DAY, 10);
-//		dailyCalendar.set(Calendar.MINUTE, 0);
-//		dailyCalendar.set(Calendar.SECOND, 0);
 		
 		/* EditText object */
-		EditText subscribeText = (EditText) findViewById(R.id.editSubscription);
+//		EditText subscribeText = (EditText) findViewById(R.id.editSubscription);
 		
-		String num = subscribeText.getText().toString();
+		/* Get the current phone number */
+		TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+		
+//		String num = subscribeText.getText().toString();
+		String num = tm.getLine1Number();
 		
 		/* If it's not a valid number, then throw an error message */
 		if(!isValidNum(num)){

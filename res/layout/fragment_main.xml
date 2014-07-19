@@ -30,19 +30,6 @@
         android:onClick="spamFriend" />
 
     <EditText
-        android:id="@+id/editSubscription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/subscribe"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:hint="Enter your number" >
-
-    </EditText>
-
-    <EditText
         android:id="@+id/editSpamFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +43,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editSubscription"
+        android:layout_above="@+id/subscribe"
         android:layout_alignLeft="@+id/subscribe"
         android:layout_alignRight="@+id/subscribe"
         android:layout_marginBottom="30dp"
