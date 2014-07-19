@@ -9,16 +9,6 @@
     tools:context="com.classycoder.MainActivity$PlaceholderFragment" >
 
     <Button
-        android:id="@+id/subscribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="@string/subscribe"
-        android:onClick="subscription" />
-
-    <Button
         android:id="@+id/spamFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,13 +30,24 @@
         android:inputType="phone"
         android:hint="Enter friend's number" />
 
-    <TextView
+    <Button
+        android:id="@+id/subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/subscribe"
-        android:layout_alignLeft="@+id/subscribe"
-        android:layout_alignRight="@+id/subscribe"
-        android:layout_marginBottom="30dp"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:onClick="subscription"
+        android:text="@string/subscribe" />
+
+    <Button
+        android:id="@+id/cancel_subscription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spamFriend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:onClick="cancelSubscription"
+        android:text="@string/cancel" />
 
 </RelativeLayout>

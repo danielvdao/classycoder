@@ -139,6 +139,14 @@ public class MainActivity extends ActionBarActivity {
 		return Calendar.AM_PM;
 	}
 	
+	/* Method to cancel the subscription */
+	public void cancelSubscription(View view){
+		Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
+		PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_UPDATE_CURRENT).cancel();
+		Toast.makeText(getApplicationContext(), "You have unsubscribed!", Toast.LENGTH_SHORT).show();
+
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

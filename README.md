@@ -10,5 +10,6 @@ My first android app (hopefully). It will send out texts daily, depending on whe
 - ~~Make the project~~ Done.
 - ~~Get the SMS to send daily~~ Done with AlarmReceiver. 
 - Get the SMS to send three times a day (not necessary, but would be nice) 
+- ~~Set up the database~~ Done. 
 - Save the numbers in a database 
 - Make a nice layout
