@@ -47,7 +47,6 @@ public class MainActivity extends ActionBarActivity {
 		
 		/* Get the current phone number */
 		TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-		
 		String num = tm.getLine1Number();
 		
 		/* If it's not a valid number, then throw an error message */
