@@ -21,9 +21,8 @@ public class PhoneNumHandler extends SQLiteOpenHelper {
 	}
 
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
-		String CREATE_SUBSCRIBERS_TABLE = "CREATE TABLE subscribers (" +
-				PHONE_NUM + " TEXT" + ")";
+		String CREATE_SUBSCRIBERS_TABLE = "CREATE TABLE subscribers(" +
+				PHONE_NUM + " TEXT" + ");";
 		db.execSQL(CREATE_SUBSCRIBERS_TABLE);
 	}
 

@@ -43,31 +43,31 @@ public class MainActivity extends ActionBarActivity {
 	public void subscription(View view){
 		/* Create a new calendar instance */
 		Calendar dailyCalendar = Calendar.getInstance();
-//		dailyCalendar.set(Calendar.HOUR_OF_DAY, 10);
-//		dailyCalendar.set(Calendar.MINUTE, 0);
-//		dailyCalendar.set(Calendar.SECOND, 0);
-		
+		dailyCalendar.set(Calendar.HOUR_OF_DAY, 0);
+		dailyCalendar.set(Calendar.MINUTE, 30);
+		dailyCalendar.set(Calendar.SECOND, 0);
+
 		/* EditText object */
 		EditText subscribeText = (EditText) findViewById(R.id.editSubscription);
-		
+
 		String num = subscribeText.getText().toString();
-		
+
 		/* If it's not a valid number, then throw an error message */
 		if(!isValidNum(num)){
 			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
 		}
-		
+
 		else{
 			/* AlarmManager to call the alarms */
 			AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-			
+
 			/*Class which sends the SMS and receives the alarm*/
 			Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
-			smsSender.putExtra("phoneNum", num);
-			smsSender.putExtra("textBody", getTextBody(timeOfDay()));
-			/* Creates a pending intent to be called at current time */
+			smsSender.putExtra(PHONE_NUMBER, num);
+			smsSender.putExtra(TEXT_BODY, "hello");
+			/* Creates a pending intent to be called at 10am */
 			PendingIntent pi = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
-			
+
 			/* For the daily reminder */
 			alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pi);
 			Toast.makeText(getApplicationContext(), "You have subscribed to The Classy Coder!", Toast.LENGTH_SHORT).show();
@@ -82,44 +82,44 @@ public class MainActivity extends ActionBarActivity {
 	public void spamFriend(View view){
 		EditText editSpamFriend = (EditText) findViewById(R.id.editSpamFriend);
 		String num = editSpamFriend.getText().toString();
-		
+
 		/* If number no length 11, then throw a message */
 		if(!PhoneNumberUtils.isGlobalPhoneNumber(num)){
 			Toast.makeText(getApplicationContext(), "Invalid number, please try again.", Toast.LENGTH_SHORT).show();
 		}
-		
+
 		else{
 			sendSms(num);
 		}
 	}
-	
+
 	/* Method to send SMS to friend once */
 	private void sendSms(String num){
 		/* Get the body of the text message */ 
 		String text = getTextBody(timeOfDay());
-		
+
 		/* Send the text */
 		SmsManager messenger = android.telephony.SmsManager.getDefault();
 		messenger.sendTextMessage(num, null, text, null, null);
 		Toast.makeText(getApplicationContext(), "You have sent a message to your friend!", Toast.LENGTH_SHORT).show();
 	}
-	
+
 	/* Method to return the text message that needs to be sent */
 	private String getTextBody(int time_of_day){
 		ArrayList<String> all_txt = new ArrayList<String>();
 		try{
 			BufferedReader br;
-			
+
 			/* Morning messages */
 			if(time_of_day == 0){
 				br = new BufferedReader(new InputStreamReader(getAssets().open("mornings.txt")));
 			}
-			
+
 			/* Afternoon messages */
 			else{
 				br = new BufferedReader(new InputStreamReader(getAssets().open("afternoons.txt")));
 			}
-			
+
 			String line; 
 			while ((line = br.readLine()) != null){
 				all_txt.add(line);
@@ -129,19 +129,19 @@ public class MainActivity extends ActionBarActivity {
 		catch (IOException e){
 			Toast.makeText(getApplicationContext(), "Text body cannot be sent.", Toast.LENGTH_SHORT).show();
 		}
-		
+
 		int len = all_txt.size();
 		Random rand = new Random();
-		
+		return "hello";
 		/* Pick a random message from the file */
-		return all_txt.get(rand.nextInt(len));
+//		return all_txt.get(rand.nextInt(len));
 	}
-	
+
 	/* Method to return time of day */
 	private static int timeOfDay(){		
 		return Calendar.AM_PM;
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
