@@ -44,13 +44,10 @@ public class MainActivity extends ActionBarActivity {
 		/* Create a new calendar instance */
 		Calendar dailyCalendar = Calendar.getInstance();
 		
-		/* EditText object */
-//		EditText subscribeText = (EditText) findViewById(R.id.editSubscription);
 		
 		/* Get the current phone number */
 		TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		
-//		String num = subscribeText.getText().toString();
 		String num = tm.getLine1Number();
 		
 		/* If it's not a valid number, then throw an error message */
