@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
 			PendingIntent pi = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
 			
 			/* For the daily reminder */
-			alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pi);
+			alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, dailyCalendar.getTimeInMillis(), AlarmManager.INTERVAL_HALF_DAY, pi);
 			Toast.makeText(getApplicationContext(), "You have subscribed to The Classy Coder!", Toast.LENGTH_SHORT).show();
 		}
 	}
