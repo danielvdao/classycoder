@@ -37,7 +37,6 @@ public class MainActivity extends ActionBarActivity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 	}
-
 	public void subscription(View view){
 		/* Create a new calendar instance */
 		Calendar dailyCalendar = Calendar.getInstance();

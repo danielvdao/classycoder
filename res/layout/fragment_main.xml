@@ -49,6 +49,7 @@
         android:layout_toLeftOf="@+id/spamFriend"
         android:background="@color/grey"
         android:ems="10"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:hint="Enter a phone number" />
 
 </RelativeLayout>
