@@ -18,16 +18,15 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:onClick="cancelSubscription"
-        android:text="@string/cancel"
-        android:background="@android:color/white" />
+        android:text="@string/cancel" />
 
     <Button
         android:id="@+id/subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cancel_subscription"
         android:layout_alignBottom="@+id/cancel_subscription"
         android:layout_alignLeft="@+id/editSpamFriend"
+        android:layout_alignTop="@+id/cancel_subscription"
         android:onClick="subscription"
         android:text="@string/subscribe" />
 
@@ -44,10 +43,11 @@
         android:id="@+id/editSpamFriend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/spamFriend"
         android:layout_alignBottom="@+id/spamFriend"
         android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/spamFriend"
         android:layout_toLeftOf="@+id/spamFriend"
+        android:background="@color/grey"
         android:ems="10"
         android:inputType="phone" />
 

@@ -28,8 +28,6 @@ public class MainActivity extends ActionBarActivity {
 	public static final String TEXT_BODY = "com.classycoder";
 
 ;
-
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -61,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
 			/*Class which sends the SMS and receives the alarm*/
 			Intent smsSender = new Intent("com.classycoder.AlarmReceiver");
 			smsSender.putExtra("phoneNum", num);
-			smsSender.putExtra("textBody", getTextBody(timeOfDay()));
 			/* Creates a pending intent to be called at current time */
 			PendingIntent pi = PendingIntent.getBroadcast(this, 0, smsSender, PendingIntent.FLAG_CANCEL_CURRENT);
 			
@@ -93,7 +90,7 @@ public class MainActivity extends ActionBarActivity {
 	/* Method to send SMS to friend once */
 	private void sendSms(String num){
 		/* Get the body of the text message */ 
-		String text = getTextBody(timeOfDay());
+		String text = getTextBody();
 		
 		/* Send the text */
 		SmsManager messenger = android.telephony.SmsManager.getDefault();
@@ -102,21 +99,11 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	/* Method to return the text message that needs to be sent */
-	private String getTextBody(int time_of_day){
+	private String getTextBody(){
 		ArrayList<String> all_txt = new ArrayList<String>();
 		try{
-			BufferedReader br;
-			
-			/* Morning messages */
-			if(time_of_day == 0){
-				br = new BufferedReader(new InputStreamReader(getAssets().open("mornings.txt")));
-			}
-			
-			/* Afternoon messages */
-			else{
-				br = new BufferedReader(new InputStreamReader(getAssets().open("afternoons.txt")));
-			}
-			
+			BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("lovelypuns.txt")));
+	
 			String line; 
 			while ((line = br.readLine()) != null){
 				all_txt.add(line);
@@ -132,11 +119,6 @@ public class MainActivity extends ActionBarActivity {
 		
 		/* Pick a random message from the file */
 		return all_txt.get(rand.nextInt(len));
-	}
-	
-	/* Method to return time of day */
-	private static int timeOfDay(){		
-		return Calendar.AM_PM;
 	}
 	
 	/* Method to cancel the subscription */
