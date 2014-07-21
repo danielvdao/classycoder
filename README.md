@@ -9,6 +9,6 @@ My first android app (hopefully). It will send out texts daily, depending on whe
 - ~~Read the text from the assets file and get it to display~~ Done.  
 - ~~Make the project~~ Done.
 - ~~Get the SMS to send daily~~ Done with AlarmReceiver. 
-- Get the SMS to send three times a day (not necessary, but would be nice) 
-- ~~Set up the database~~ Done. 
+- ~~Get the SMS to send three times a day (not necessary, but would be nice)~~ Decided on twice a day, but done regardless. 
+- Set up the database 
 - Make a nice layout
