@@ -90,7 +90,7 @@ public class MainActivity extends ActionBarActivity {
 	private void sendSms(String num){
 		/* Get the body of the text message */ 
 		String text = getTextBody();
-		
+		text += "\n-The Classy Coder";
 		/* Send the text */
 		SmsManager messenger = android.telephony.SmsManager.getDefault();
 		messenger.sendTextMessage(num, null, text, null, null);

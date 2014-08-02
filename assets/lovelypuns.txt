@@ -1,9 +1,7 @@
-hello 
-world
-i like
-to 
-test 
-keep
-going
-woo
-hoo
+A SQL query goes into a bar, walks up to two tables and asks, "Can I join you?" 
+What's the object-oriented way to become wealthy? Inheritance.
+["hip","hip"] (hip hip array!)
+Programming is like sex: One mistake and you have to support it for the rest of your life.
+It's not a bug, it's a feature.  
+If Java is the answer, it must have been a really verbose question.
+Your momma's so fat that not even Dijkstra is able to find a shortest path around her.

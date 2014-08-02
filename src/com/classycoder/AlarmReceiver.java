@@ -51,6 +51,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 	/* Method to fire a text */
 	private void sendSms(String num, String message){
 		/* Send the text */
+		message += "\n-The Classy Coder";
 		SmsManager messenger = android.telephony.SmsManager.getDefault();
 		messenger.sendTextMessage(num, null, message, null, null);
 	}
