@@ -2,12 +2,16 @@
 <resources>
 
     <string name="app_name">ClassyCoder</string>
-    <string name="hello_world">Please enter your number:</string>
-    <string name="action_settings">Settings</string>
+    <string name="hello_world">This was a summer android project made by Daniel Dao.</string>
+    <string name="action_about">About</string>
     <string name="subscribe">Subscribe!</string>
     <string name="text_friend">Commit!</string>
     <string name="cancel">Unsunscribe</string>
+
     <color name="white">#FFFFFF</color>
     <color name="grey">#CCCCCC</color>
+
+    <string name="title_activity_display_about">DisplayAbout</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

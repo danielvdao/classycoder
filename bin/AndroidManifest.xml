@@ -18,21 +18,32 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".AlarmReceiver">
-        <intent-filter>
-            <action android:name="com.classycoder.AlarmReceiver" >
-            </action>         
-        </intent-filter>
+
+        <receiver android:name="com.classycoder.AlarmReceiver" >
+            <intent-filter>
+                <action android:name="com.classycoder.AlarmReceiver" >
+                </action>
+            </intent-filter>
         </receiver>
+
+        <activity
+            android:name="com.classycoder.DisplayAbout"
+            android:label="@string/title_activity_display_about"
+            android:parentActivityName="com.classycoder.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.classycoder.MainActivity" />
+        </activity>
     </application>
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    
+
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
 </manifest>
