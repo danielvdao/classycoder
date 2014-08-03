@@ -11,4 +11,5 @@ My first android app (hopefully). It will send out texts daily, depending on whe
 - ~~Get the SMS to send daily~~ Done with AlarmReceiver. 
 - ~~Get the SMS to send three times a day (not necessary, but would be nice)~~ Decided on twice a day, but done regardless. 
 - Set up the database 
-- Make a nice layout
+- ~~Make a nice layout~~ Well, it's a better than nothing type of design. 
+- ~~About page~~ Finally finished that one, took forever because I was so lazy. 
